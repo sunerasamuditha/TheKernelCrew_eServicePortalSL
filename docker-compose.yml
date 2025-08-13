@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   db:
     image: postgres:15
@@ -23,7 +21,7 @@ services:
       - "6379:6379"
 
   backend:
-    build: ./api
+    build: ./backend
     container_name: govportal_backend
     restart: always
     env_file: .env
@@ -34,7 +32,9 @@ services:
       - redis
 
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: dockerfile/Dockerfile
     container_name: govportal_frontend
     restart: always
     ports:
