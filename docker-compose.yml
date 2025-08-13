@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: govportal_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/dump:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redis:7
+    container_name: govportal_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  backend:
+    build: ./api
+    container_name: govportal_backend
+    restart: always
+    env_file: .env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build: ./frontend
+    container_name: govportal_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
