@@ -29,22 +29,27 @@ app.use(cors({
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// Serve uploaded files
+app.use('/uploads', express.static('uploads'));
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'OK',
-    message: 'e-Passport SL Backend API is running',
+    message: 'Government Services Portal Backend API is running',
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '2.0.0'
   });
 });
 
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
-app.use('/api/applications', require('./routes/applications'));
-app.use('/api/documents', require('./routes/documents'));
-app.use('/api/payments', require('./routes/payments'));
+app.use('/api/services', require('./routes/services'));
 app.use('/api/appointments', require('./routes/appointments'));
+app.use('/api/documents', require('./routes/documents'));
+app.use('/api/feedback', require('./routes/feedback'));
+app.use('/api/applications', require('./routes/applications'));
+app.use('/api/payments', require('./routes/payments'));
 app.use('/api/support', require('./routes/support'));
 
 // Error handling middleware
@@ -65,7 +70,7 @@ app.use('*', (req, res) => {
 });
 
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 e-Passport SL Backend API running on port ${PORT}`);
+  console.log(`🚀 Government Services Portal Backend API running on port ${PORT}`);
   console.log(`📱 Health check: http://localhost:${PORT}/health`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });

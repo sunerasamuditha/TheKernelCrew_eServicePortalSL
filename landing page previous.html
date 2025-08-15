@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Passport SL | Digital Passport Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --peacock: #005A70;           /* Primary */
+            --gold: #FFAA00;              /* Accent */
+            --bg: #F7F9FA;                /* Background */
+            --card: #EAEFED;              /* Cards/Dividers */
+            --text: #1A2E33;              /* Primary Text */
+            --muted: #6C7A80;             /* Secondary Text */
+            --success: #28A745;           /* Success */
+            --error: #DC3545;             /* Error */
+            --warn: #FDDA0D;              /* Warning */
+            --glass: rgba(255,255,255,0.6);
+            --radius: 12px;
+            --shadow: 0 6px 18px rgba(10,20,25,0.06);
+        }
+
+        /* CSS RESET */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* GENERAL STYLING */
+        body {
+            font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, var(--peacock), #00788C);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 90, 112, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(0, 90, 112, 0.98);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            display: flex;
+        }
+
+        .mobile-menu .btn {
+            margin-bottom: 0.75rem;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--peacock), #00788C);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: #fff;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Inter, sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FFB347 0%, #FF8C42 50%, #FF6B35 100%);
+            border: none;
+            color: white;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3), 
+                        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 50%, #FF4500 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4), 
+                        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-intro {
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .mobile-hero-intro {
+            display: none;
+        }
+
+        /* CAROUSEL */
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            overflow: hidden;
+            border-radius: var(--radius);
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-card {
+            flex: 0 0 100%;
+            background: white;
+            border-radius: var(--radius);
+            padding: 0;
+            border: 1px solid var(--card);
+            box-shadow: 0 10px 40px rgba(0, 90, 112, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: stretch;
+            min-height: 400px;
+        }
+
+        .card-image {
+            flex: 0 0 45%;
+            background: var(--bg);
+            border-radius: var(--radius) 0 0 var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-image-placeholder {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--peacock), #00788C);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            line-height: 1;
+        }
+
+        .card-content {
+            flex: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .carousel-card h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .carousel-card p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--muted);
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .card-cta {
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+
+        .card-cta .btn {
+            background: linear-gradient(135deg, #FFB347 0%, #FF8C42 50%, #FF6B35 100%);
+            border: none;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3), 
+                        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-cta .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .card-cta .btn:hover::before {
+            left: 100%;
+        }
+
+        .card-cta .btn:hover {
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 50%, #FF4500 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4), 
+                        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        /* CAROUSEL ARROWS */
+        .carousel-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text);
+            font-size: 1.4rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            z-index: 200;
+        }
+
+        .carousel-arrows:hover {
+            background: rgba(255, 255, 255, 1);
+            color: var(--peacock);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .arrow-left {
+            left: 10px;
+        }
+
+        .arrow-right {
+            right: 10px;
+        }
+
+        /* CAROUSEL NAVIGATION */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 4rem;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--gold);
+            transform: scale(1.3);
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            text-align: center;
+            padding: 0rem 2rem 2rem;
+            margin-top: -1rem;
+        }
+
+        .cta-button {
+            font-size: 1.2rem;
+            padding: 1rem 3rem;
+            background: var(--peacock);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: Inter, sans-serif;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 90, 112, 0.4);
+        }
+
+        .help-button {
+            background: linear-gradient(135deg, #FFB347 0%, #FF8C42 50%, #FF6B35 100%) !important;
+            border: none !important;
+            color: white !important;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3), 
+                        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .help-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .help-button:hover::before {
+            left: 100%;
+        }
+
+        .help-button:hover {
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B35 50%, #FF4500 100%) !important;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4), 
+                        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                gap: 0;
+            }
+
+            .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero-intro {
+                display: none;
+            }
+
+            .mobile-hero-intro {
+                display: block;
+                margin-bottom: 2rem;
+            }
+
+            .mobile-hero-intro h2 {
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: #fff;
+                line-height: 1.2;
+            }
+
+            .mobile-hero-intro p {
+                font-size: 1rem;
+                opacity: 0.9;
+                color: rgba(255, 255, 255, 0.9);
+                margin-bottom: 0;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                margin-bottom: 2rem;
+            }
+
+            .carousel-container {
+                margin: 0 auto 2rem;
+            }
+
+            .carousel-card {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .card-image {
+                flex: 0 0 200px;
+                border-radius: var(--radius) var(--radius) 0 0;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .carousel-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .carousel-card p {
+                font-size: 1rem;
+            }
+
+            .carousel-arrows {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            .arrow-left {
+                left: 5px;
+            }
+
+            .arrow-right {
+                right: 5px;
+            }
+
+            .cta-button {
+                font-size: 1.1rem;
+                padding: 0.9rem 2.5rem;
+            }
+
+            .auth-buttons {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 5rem 1rem 2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .carousel-card {
+                margin: 0;
+            }
+
+            .card-image {
+                flex: 0 0 150px;
+            }
+
+            .card-content {
+                padding: 1rem;
+            }
+
+            .card-image-placeholder {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
+            }
+
+            .carousel-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .carousel-card p {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .feature-list li {
+                font-size: 0.9rem;
+                padding: 0.4rem 0;
+                padding-left: 1.5rem;
+            }
+
+            .feature-list li::before {
+                left: 0;
+                font-size: 0.8rem;
+            }
+
+            .cta-button {
+                font-size: 1rem;
+                padding: 0.8rem 2rem;
+            }
+
+            .logo h1 {
+                font-size: 1.2rem;
+            }
+
+            .nav-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .carousel-arrows {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">eP</div>
+                <h1>e-Passport SL</h1>
+            </div>
+            <div class="auth-buttons">
+                <!-- <a href="#" class="btn btn-outline" onclick="redirectToAIHelp()">AI Help</a> -->
+                <a href="#" class="btn btn-outline" onclick="showAuthModal('login')">Login</a>
+                <a href="#" class="btn btn-primary" onclick="showAuthModal('register')">Register</a>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="#" class="btn btn-outline" onclick="redirectToAIHelp(); closeMobileMenu()">AI Help</a>
+                <a href="#" class="btn btn-outline" onclick="showAuthModal('login'); closeMobileMenu()">Login</a>
+                <a href="#" class="btn btn-primary" onclick="showAuthModal('register'); closeMobileMenu()">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-intro">
+            <h1>Digital Passport Services</h1>
+            <p>Apply, renew, and manage your Sri Lankan passport with our secure, AI-powered booking system</p>
+        </div>
+
+        <div class="mobile-hero-intro">
+            <h2>Digital Passport Services</h2>
+            <p>Apply, renew, and manage your Sri Lankan passport with our secure, AI-powered booking system</p>
+        </div>
+
+        <!-- CAROUSEL -->
+        <div class="carousel-container">
+            <div class="carousel" id="carousel">
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="directory/images/explore.jpg" alt="Fast & Secure" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="card-image-placeholder" style="display:none;">🚀</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Fast & Secure</h3>
+                        <p>Apply for your passport online with our streamlined digital process</p>
+                        <ul class="feature-list">
+                            <li>Quick application process</li>
+                            <li>Secure document upload</li>
+                            <li>Real-time status tracking</li>
+                            <li>Digital payment options</li>
+                        </ul>
+                        <div class="card-cta">
+                            <a href="#" class="btn" onclick="showAuthModal('register')">Get Started Today</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="directory/images/explore.jpg" alt="AI PredictFlow" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="card-image-placeholder" style="display:none;">🤖</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>AI PredictFlow</h3>
+                        <p>Our smart system predicts office traffic to minimize your waiting time</p>
+                        <ul class="feature-list">
+                            <li>Intelligent appointment scheduling</li>
+                            <li>Traffic prediction analytics</li>
+                            <li>Optimal time recommendations</li>
+                            <li>Reduced waiting periods</li>
+                        </ul>
+                        <div class="card-cta">
+                            <a href="#" class="btn" onclick="showAuthModal('register')">Get Started Today</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <div class="card-image">
+                        <img src="directory/images/explore.jpg" alt="Mobile Ready" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                        <div class="card-image-placeholder" style="display:none;">📱</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Mobile Ready</h3>
+                        <p>Access all services from your smartphone or tablet, anywhere, anytime</p>
+                        <ul class="feature-list">
+                            <li>Responsive mobile design</li>
+                            <li>QR code confirmations</li>
+                            <li>Push notifications</li>
+                            <li>Offline document storage</li>
+                        </ul>
+                        <div class="card-cta">
+                            <a href="#" class="btn" onclick="showAuthModal('register')">Get Started Today</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-arrows arrow-left" onclick="previousCard()">‹</div>
+            <div class="carousel-arrows arrow-right" onclick="nextCard()">›</div>
+        </div>
+
+        <!-- CAROUSEL NAVIGATION -->
+        <div class="carousel-nav">
+            <div class="nav-dot active" onclick="goToCard(0)"></div>
+            <div class="nav-dot" onclick="goToCard(1)"></div>
+            <div class="nav-dot" onclick="goToCard(2)"></div>
+        </div>
+
+        <!-- CTA SECTION -->
+        <div class="cta-section">
+            <a href="#" class="cta-button help-button" onclick="redirectToAIHelp()">Need Help? Ask Our AI</a>
+        </div>
+    </section>
+
+    <!-- Simple Modal for Login/Register -->
+    <div id="authModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="background: white; padding: 2rem; border-radius: 12px; max-width: 400px; width: 90%; text-align: center;">
+            <h2 id="modalTitle" style="color: var(--peacock); margin-bottom: 1rem;">Login</h2>
+            <p style="color: var(--muted); margin-bottom: 2rem;">Please enter your credentials to continue</p>
+            
+            <form id="authForm" style="margin-bottom: 1.5rem;">
+                <input type="email" placeholder="Email" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--card); border-radius: 8px; font-family: Inter, sans-serif;">
+                <input type="password" placeholder="Password" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--card); border-radius: 8px; font-family: Inter, sans-serif;">
+                <div id="registerFields" style="display: none;">
+                    <input type="password" placeholder="Confirm Password" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--card); border-radius: 8px; font-family: Inter, sans-serif;">
+                    <input type="text" placeholder="Full Name" style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; border: 1px solid var(--card); border-radius: 8px; font-family: Inter, sans-serif;">
+                </div>
+                <button type="submit" style="width: 100%; padding: 0.75rem; background: rgba(255, 170, 0, 0.9); backdrop-filter: blur(15px); border: 1px solid rgba(255, 170, 0, 0.3); color: var(--text); border-radius: 8px; font-family: Inter, sans-serif; font-weight: 600; cursor: pointer; box-shadow: 0 8px 32px rgba(255, 170, 0, 0.25); transition: all 0.3s ease;">Continue</button>
+            </form>
+            
+            <p style="color: var(--muted); font-size: 0.9rem;">
+                <span id="switchText">Don't have an account?</span>
+                <a href="#" id="switchLink" onclick="switchAuthMode()" style="color: var(--peacock); text-decoration: none; font-weight: 600;">Register here</a>
+            </p>
+            
+            <button onclick="closeAuthModal()" style="margin-top: 1rem; background: none; border: none; color: var(--muted); cursor: pointer; font-family: Inter, sans-serif;">Close</button>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Modal -->
+    <div id="aiChatModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+        <div style="background: white; border-radius: 15px; width: 90%; max-width: 450px; height: 600px; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);">
+            <!-- Chat Header -->
+            <div style="background: linear-gradient(135deg, var(--peacock), #006B7A); color: white; padding: 1.2rem; display: flex; align-items: center; justify-content: space-between;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, #25D366, #20C997); display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                        🤖
+                    </div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 1rem;">ePassport Assistant</div>
+                        <div style="font-size: 0.8rem; opacity: 0.9;">🟢 Online • Ready to help</div>
+                    </div>
+                </div>
+                
+                <!-- Language Selection -->
+                <div style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 16px; padding: 0.2rem; display: flex; gap: 0.2rem; backdrop-filter: blur(10px);">
+                    <button onclick="setLandingChatLanguage('en')" class="landing-lang-btn active" data-lang="en" style="padding: 0.3rem 0.6rem; border: none; border-radius: 12px; background: rgba(255, 255, 255, 0.9); color: var(--peacock); font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">EN</button>
+                    <button onclick="setLandingChatLanguage('si')" class="landing-lang-btn" data-lang="si" style="padding: 0.3rem 0.6rem; border: none; border-radius: 12px; background: transparent; color: white; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">සි</button>
+                    <button onclick="setLandingChatLanguage('ta')" class="landing-lang-btn" data-lang="ta" style="padding: 0.3rem 0.6rem; border: none; border-radius: 12px; background: transparent; color: white; font-size: 0.75rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">த</button>
+                </div>
+            </div>
+
+            <!-- Chat Messages -->
+            <div id="landingChatLog" style="flex: 1; padding: 1.2rem; overflow-y: auto; background: #f8f9fa; scroll-behavior: smooth;">
+                <!-- Messages will be added here -->
+            </div>
+
+            <!-- Chat Input -->
+            <div style="padding: 1rem; background: white; border-top: 1px solid #e9ecef; display: flex; gap: 0.75rem; align-items: flex-end;">
+                <div style="flex: 1; position: relative;">
+                    <input id="landingChatInput" type="text" placeholder="Type your question here..." style="width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #ddd; border-radius: 25px; font-size: 0.9rem; outline: none; transition: all 0.3s ease;" onkeypress="if(event.key==='Enter') sendLandingChat()" onfocus="this.style.borderColor='var(--peacock)'" onblur="this.style.borderColor='#ddd'" />
+                </div>
+                <button onclick="sendLandingChat()" style="width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, var(--peacock), #006B7A); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 3px 8px rgba(0, 90, 112, 0.3);" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                    📤
+                </button>
+            </div>
+
+            <!-- Quick Actions -->
+            <div style="padding: 0 1rem 1rem; background: white; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button onclick="quickLandingAsk('fees')" style="padding: 0.4rem 0.8rem; background: rgba(0, 90, 112, 0.1); border: 1px solid rgba(0, 90, 112, 0.2); border-radius: 16px; color: var(--peacock); font-size: 0.8rem; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onmouseover="this.style.background='rgba(0, 90, 112, 0.2)'" onmouseout="this.style.background='rgba(0, 90, 112, 0.1)'">
+                    💰 <span data-key="fees">Fees</span>
+                </button>
+                <button onclick="quickLandingAsk('documents')" style="padding: 0.4rem 0.8rem; background: rgba(0, 90, 112, 0.1); border: 1px solid rgba(0, 90, 112, 0.2); border-radius: 16px; color: var(--peacock); font-size: 0.8rem; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onmouseover="this.style.background='rgba(0, 90, 112, 0.2)'" onmouseout="this.style.background='rgba(0, 90, 112, 0.1)'">
+                    📄 <span data-key="documents">Documents</span>
+                </button>
+                <button onclick="quickLandingAsk('process')" style="padding: 0.4rem 0.8rem; background: rgba(0, 90, 112, 0.1); border: 1px solid rgba(0, 90, 112, 0.2); border-radius: 16px; color: var(--peacock); font-size: 0.8rem; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onmouseover="this.style.background='rgba(0, 90, 112, 0.2)'" onmouseout="this.style.background='rgba(0, 90, 112, 0.1)'">
+                    🔄 <span data-key="process">Process</span>
+                </button>
+                <button onclick="quickLandingAsk('apply')" style="padding: 0.4rem 0.8rem; background: rgba(0, 90, 112, 0.1); border: 1px solid rgba(0, 90, 112, 0.2); border-radius: 16px; color: var(--peacock); font-size: 0.8rem; cursor: pointer; transition: all 0.3s ease; font-weight: 500;" onmouseover="this.style.background='rgba(0, 90, 112, 0.2)'" onmouseout="this.style.background='rgba(0, 90, 112, 0.1)'">
+                    📝 <span data-key="apply">Apply Now</span>
+                </button>
+            </div>
+
+            <!-- Close Button -->
+            <button onclick="closeAIChatModal()" style="position: absolute; top: 1rem; right: 1rem; width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); border: none; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255, 255, 255, 0.3)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.2)'">
+                ✕
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentCard = 0;
+        const totalCards = 3;
+        let authMode = 'login';
+        let autoRotateInterval;
+        let isTransitioning = false;
+
+        // Carousel functionality - Complete rewrite for better UX
+        function updateCarousel() {
+            if (isTransitioning) return; // Prevent multiple transitions
+            
+            isTransitioning = true;
+            const carousel = document.getElementById('carousel');
+            const translateX = -currentCard * 100;
+            carousel.style.transform = `translateX(${translateX}%)`;
+            
+            // Update navigation dots
+            document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCard);
+            });
+
+            // Reset transition flag after animation completes
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 1000); // Match CSS transition duration
+        }
+
+        function nextCard() {
+            if (isTransitioning) return;
+            currentCard = (currentCard + 1) % totalCards;
+            updateCarousel();
+            resetAutoRotate(); // Reset timer when user interacts
+        }
+
+        function previousCard() {
+            if (isTransitioning) return;
+            currentCard = (currentCard - 1 + totalCards) % totalCards;
+            updateCarousel();
+            resetAutoRotate(); // Reset timer when user interacts
+        }
+
+        function goToCard(cardIndex) {
+            if (isTransitioning || cardIndex === currentCard) return;
+            currentCard = cardIndex;
+            updateCarousel();
+            resetAutoRotate(); // Reset timer when user interacts
+        }
+
+        // Auto-rotation with proper UX patterns
+        function startAutoRotate() {
+            autoRotateInterval = setInterval(() => {
+                // Only auto-advance if user isn't interacting
+                if (!isTransitioning && !document.querySelector('.carousel-container:hover')) {
+                    nextCard();
+                }
+            }, 4000); // 4 seconds total cycle time (1s transition + 3s display)
+        }
+
+        function stopAutoRotate() {
+            if (autoRotateInterval) {
+                clearInterval(autoRotateInterval);
+                autoRotateInterval = null;
+            }
+        }
+
+        function resetAutoRotate() {
+            stopAutoRotate();
+            setTimeout(startAutoRotate, 2000); // Resume auto-rotation after 2s of no interaction
+        }
+
+        // Enhanced UX: Pause on hover, resume on leave
+        function setupCarouselInteractions() {
+            const container = document.querySelector('.carousel-container');
+            
+            container.addEventListener('mouseenter', () => {
+                stopAutoRotate();
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                resetAutoRotate();
+            });
+
+            // Touch/swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                stopAutoRotate();
+            });
+            
+            container.addEventListener('touchmove', (e) => {
+                e.preventDefault(); // Prevent scrolling while swiping
+            });
+            
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].clientX;
+                handleSwipe();
+                resetAutoRotate();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (Math.abs(swipeDistance) > swipeThreshold) {
+                    if (swipeDistance > 0) {
+                        previousCard(); // Swipe right = previous
+                    } else {
+                        nextCard(); // Swipe left = next
+                    }
+                }
+            }
+        }
+
+        // Initialize carousel on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCarousel();
+            setupCarouselInteractions();
+            startAutoRotate();
+        });
+
+        // Mobile menu functionality
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.remove('active');
+        }
+
+        // AI Help function - Open chatbot modal instead of redirecting
+        function redirectToAIHelp() {
+            showAIChatModal();
+        }
+
+        // Landing page chatbot variables
+        let landingChatLanguage = 'en';
+        
+        const landingChatTranslations = {
+            en: {
+                placeholder: 'Type your question here...',
+                fees: 'Fees',
+                documents: 'Documents',
+                process: 'Process',
+                apply: 'Apply Now',
+                welcome: "👋 Hello! I'm your ePassport Assistant. I can help you with passport applications, fees, documents, and more. How can I assist you today?",
+                responses: {
+                    fees: "💰 ePassport Fee Information:\n\n• Regular Processing (21 days): Rs. 7,500\n• Fast Track (7 days): Rs. 12,500\n• Express (3 days): Rs. 17,500\n\n✨ All fees include government charges and service fees. Payment can be made online or at service centers.",
+                    documents: "📄 Required Documents:\n\n• Birth Certificate (original + copy)\n• National ID Card\n• Previous passport (if renewal)\n• Marriage certificate (if applicable)\n• Guarantor form with signatures\n• 2 passport-size photographs\n\n📋 All documents must be originals with certified photocopies.",
+                    process: "🔄 Application Process:\n\n1️⃣ Complete online application\n2️⃣ Upload required documents\n3️⃣ Schedule appointment\n4️⃣ Visit service center\n5️⃣ Biometric data collection\n6️⃣ Pay fees\n7️⃣ Receive passport\n\n⏱️ Processing time varies by service type.",
+                    apply: "📝 Ready to Apply?\n\n🌟 Start your ePassport application:\n• Click 'Get Started' to begin\n• Complete online form\n• Upload documents\n• Schedule appointment\n\n💡 Pro tip: Have all documents ready before starting to save time!"
+                }
+            },
+            si: {
+                placeholder: 'ඔබේ ප්‍රශ්නය මෙහි ටයිප් කරන්න...',
+                fees: 'ගාස්තු',
+                documents: 'ලේඛන',
+                process: 'ක්‍රියාවලිය',
+                apply: 'දැන් අයදුම්',
+                welcome: "👋 ආයුබෝවන්! මම ඔබේ ඊ-පාස්පෝර්ට් සහායකයා. මට පාස්පෝර්ට් අයදුම්, ගාස්තු, ලේඛන සහ තවත් බොහෝ දේ සම්බන්ධයෙන් උදව් කළ හැක. අද මම ඔබට කෙසේ උදව් කළ හැකිද?",
+                responses: {
+                    fees: "💰 ඊ-පාස්පෝර්ට් ගාස්තු තොරතුරු:\n\n• සාමාන්‍ය ක්‍රියාවලිය (දින 21): රු. 7,500\n• වේගවත් ට්‍රැක් (දින 7): රු. 12,500\n• අධිවේගී (දින 3): රු. 17,500\n\n✨ සියලුම ගාස්තුවලට රජයේ ගාස්තු සහ සේවා ගාස්තු ඇතුළත්ය.",
+                    documents: "📄 අවශ්‍ය ලේඛන:\n\n• උප්පැන්න සහතිකය (මුල් + පිටපත)\n• ජාතික හැඳුනුම්පත\n• පෙර පාස්පෝර්ටය (අලුත් කරන්නේ නම්)\n• විවාහ සහතිකය (අදාළ නම්)\n• අනුග්‍රාහක පෝරමය සහිත අත්සන්\n• පාස්පෝර්ට් ප්‍රමාණයේ ඡායාරූප 2ක්",
+                    process: "🔄 අයදුම් ක්‍රියාවලිය:\n\n1️⃣ අන්තර්ජාල අයදුම්පත පුරවන්න\n2️⃣ අවශ්‍ය ලේඛන උඩුගත කරන්න\n3️⃣ හමුවීම කාලසටහන්\n4️⃣ සේවා මධ්‍යස්ථානයට යන්න\n5️⃣ ජෛවමිතික දත්ත එකතු කිරීම\n6️⃣ ගාස්තු ගෙවන්න\n7️⃣ පාස්පෝර්ටය ලබා ගන්න",
+                    apply: "📝 අයදුම් කිරීමට සූදානම්ද?\n\n🌟 ඔබේ ඊ-පාස්පෝර්ට් අයදුම ආරම්භ කරන්න:\n• ආරම්භ කිරීමට 'Get Started' ක්ලික් කරන්න\n• අන්තර්ජාල පෝරමය පුරවන්න\n• ලේඛන උඩුගත කරන්න\n• හමුවීම කාලසටහන්"
+                }
+            },
+            ta: {
+                placeholder: 'உங்கள் கேள்வியை இங்கே தட்டச்சு செய்யுங்கள்...',
+                fees: 'கட்டணம்',
+                documents: 'ஆவணங்கள்',
+                process: 'செயல்முறை',
+                apply: 'இப்போது விண்ணப்பிக்கவும்',
+                welcome: "👋 வணக்கம்! நான் உங்கள் மின்-பாஸ்போர்ட் உதவியாளர். பாஸ்போர்ட் விண்ணப்பங்கள், கட்டணங்கள், ஆவணங்கள் மற்றும் பலவற்றில் நான் உங்களுக்கு உதவ முடியும். இன்று நான் உங்களுக்கு எப்படி உதவ முடியும்?",
+                responses: {
+                    fees: "💰 மின்-பாஸ்போர்ட் கட்டண தகவல்:\n\n• வழக்கமான செயல்முறை (21 நாட்கள்): ரூ. 7,500\n• வேகமான டிராக் (7 நாட்கள்): ரூ. 12,500\n• எக்ஸ்பிரஸ் (3 நாட்கள்): ரூ. 17,500\n\n✨ அனைத்து கட்டணங்களிலும் அரசு கட்டணங்கள் மற்றும் சேவை கட்டணங்கள் அடங்கும்.",
+                    documents: "📄 தேவையான ஆவணங்கள்:\n\n• பிறப்பு சான்றிதழ் (அசல் + நகல்)\n• தேசிய அடையாள அட்டை\n• முந்தைய பாஸ்போர்ட் (புதுப்பித்தால்)\n• திருமண சான்றிதழ் (பொருந்தினால்)\n• உத்தரவாததாரர் படிவம் மற்றும் கையொப்பங்கள்\n• 2 பாஸ்போர்ட் அளவு புகைப்படங்கள்",
+                    process: "🔄 விண்ணப்ப செயல்முறை:\n\n1️⃣ ஆன்லைன் விண்ணப்பத்தை பூர்த்தி செய்யுங்கள்\n2️⃣ தேவையான ஆவணங்களை பதிவேற்றுங்கள்\n3️⃣ சந்திப்பை திட்டமிடுங்கள்\n4️⃣ சேவை மையத்திற்கு செல்லுங்கள்\n5️⃣ உயிரியல் தரவு சேகரிப்பு\n6️⃣ கட்டணம் செலுத்துங்கள்\n7️⃣ பாஸ்போர்ட்டை பெறுங்கள்",
+                    apply: "📝 விண்ணப்பிக்க தயாரா?\n\n🌟 உங்கள் மின்-பாஸ்போர்ட் விண்ணப்பத்தை தொடங்குங்கள்:\n• தொடங்க 'Get Started' கிளிக் செய்யுங்கள்\n• ஆன்லைன் படிவத்தை பூர்த்தி செய்யுங்கள்\n• ஆவணங்களை பதிவேற்றுங்கள்\n• சந்திப்பை திட்டமிடுங்கள்"
+                }
+            }
+        };
+
+        function showAIChatModal() {
+            const modal = document.getElementById('aiChatModal');
+            modal.style.display = 'flex';
+            
+            // Initialize chat if empty
+            const chatLog = document.getElementById('landingChatLog');
+            if (!chatLog.hasChildNodes()) {
+                initLandingChat();
+            }
+            
+            // Focus input
+            setTimeout(() => {
+                document.getElementById('landingChatInput').focus();
+            }, 300);
+        }
+
+        function closeAIChatModal() {
+            const modal = document.getElementById('aiChatModal');
+            modal.style.display = 'none';
+        }
+
+        function setLandingChatLanguage(lang) {
+            landingChatLanguage = lang;
+            
+            // Update language buttons
+            document.querySelectorAll('.landing-lang-btn').forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                    btn.style.background = 'rgba(255, 255, 255, 0.9)';
+                    btn.style.color = 'var(--peacock)';
+                } else {
+                    btn.classList.remove('active');
+                    btn.style.background = 'transparent';
+                    btn.style.color = 'white';
+                }
+            });
+            
+            // Update UI elements
+            updateLandingChatUI();
+        }
+
+        function updateLandingChatUI() {
+            const translations = landingChatTranslations[landingChatLanguage];
+            
+            // Update placeholder
+            const input = document.getElementById('landingChatInput');
+            if (input) input.placeholder = translations.placeholder;
+            
+            // Update quick action labels
+            document.querySelectorAll('button[onclick*="quickLandingAsk"] span[data-key]').forEach(span => {
+                const key = span.dataset.key;
+                if (translations[key]) {
+                    span.textContent = translations[key];
+                }
+            });
+        }
+
+        function initLandingChat() {
+            const chatLog = document.getElementById('landingChatLog');
+            const translations = landingChatTranslations[landingChatLanguage];
+            
+            // Welcome message
+            addLandingMessage(translations.welcome, 'bot');
+        }
+
+        function addLandingMessage(text, sender) {
+            const chatLog = document.getElementById('landingChatLog');
+            const messageDiv = document.createElement('div');
+            
+            const isUser = sender === 'user';
+            messageDiv.style.cssText = `
+                margin: 0.75rem 0;
+                padding: 1rem 1.25rem;
+                background: ${isUser ? 'linear-gradient(135deg, var(--peacock), #006B7A)' : 'white'};
+                color: ${isUser ? 'white' : '#333'};
+                border-radius: ${isUser ? '20px 6px 20px 20px' : '6px 20px 20px 20px'};
+                max-width: 85%;
+                margin-left: ${isUser ? 'auto' : '0'};
+                margin-right: ${isUser ? '0' : 'auto'};
+                font-size: 0.95rem;
+                line-height: 1.5;
+                white-space: pre-line;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                border: ${isUser ? 'none' : '1px solid #e9ecef'};
+                opacity: 0;
+                transform: translateY(15px);
+                transition: all 0.4s ease;
+            `;
+            
+            messageDiv.textContent = text;
+            chatLog.appendChild(messageDiv);
+            chatLog.scrollTop = chatLog.scrollHeight;
+            
+            // Animate in
+            setTimeout(() => {
+                messageDiv.style.opacity = '1';
+                messageDiv.style.transform = 'translateY(0)';
+            }, 50);
+        }
+
+        function sendLandingChat() {
+            const input = document.getElementById('landingChatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addLandingMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            showLandingTyping();
+            
+            // Simulate response delay
+            setTimeout(() => {
+                hideLandingTyping();
+                generateLandingResponse(message);
+            }, 1200 + Math.random() * 800);
+        }
+
+        function quickLandingAsk(topic) {
+            const translations = landingChatTranslations[landingChatLanguage];
+            const response = translations.responses[topic];
+            
+            if (response) {
+                // Add quick question as user message
+                addLandingMessage(translations[topic] + '?', 'user');
+                
+                // Show typing indicator
+                showLandingTyping();
+                
+                setTimeout(() => {
+                    hideLandingTyping();
+                    addLandingMessage(response, 'bot');
+                }, 800 + Math.random() * 400);
+            }
+        }
+
+        function generateLandingResponse(userMessage) {
+            const translations = landingChatTranslations[landingChatLanguage];
+            const msg = userMessage.toLowerCase();
+            
+            let response = '';
+            
+            if (msg.includes('fee') || msg.includes('cost') || msg.includes('price') || msg.includes('ගාස්තු') || msg.includes('கட்டணம்')) {
+                response = translations.responses.fees;
+            } else if (msg.includes('document') || msg.includes('paper') || msg.includes('ලේඛන') || msg.includes('ஆவணம்')) {
+                response = translations.responses.documents;
+            } else if (msg.includes('process') || msg.includes('how') || msg.includes('step') || msg.includes('ක්‍රියාවලිය') || msg.includes('செயல்முறை')) {
+                response = translations.responses.process;
+            } else if (msg.includes('apply') || msg.includes('start') || msg.includes('begin') || msg.includes('අයදුම්') || msg.includes('விண்ணப்பிக்க')) {
+                response = translations.responses.apply;
+            } else {
+                // Generic helpful response
+                if (landingChatLanguage === 'si') {
+                    response = "🤔 මට ඔබට උදව් කිරීමට අවශ්‍යය! කරුණාකර මෙම මාතෘකා වලින් එකක් ගැන විමසන්න:\n\n• ගාස්තු සහ ගෙවීම්\n• අවශ්‍ය ලේඛන\n• අයදුම් ක්‍රියාවලිය\n• දැන් අයදුම් කරන්නේ කෙසේද\n\nඔබට වෙනත් ප්‍රශ්නයක් තිබේ නම්, කරුණාකර වඩාත් නිශ්චිත ලෙස අසන්න.";
+                } else if (landingChatLanguage === 'ta') {
+                    response = "🤔 நான் உங்களுக்கு உதவ விரும்புகிறேன்! தயவுசெய்து இந்த தலைப்புகளில் ஒன்றைப் பற்றி கேளுங்கள்:\n\n• கட்டணங்கள் மற்றும் கொடுப்பனவுகள்\n• தேவையான ஆவணங்கள்\n• விண்ணப்ப செயல்முறை\n• இப்போது எப்படி விண்ணப்பிப்பது\n\nஉங்களுக்கு வேறு கேள்வி இருந்தால், தயவுசெய்து இன்னும் குறிப்பிட்ட முறையில் கேளுங்கள்.";
+                } else {
+                    response = "🤔 I'd love to help you! Please ask me about one of these topics:\n\n• Fees and payments\n• Required documents\n• Application process\n• How to apply now\n\nIf you have a different question, please be more specific so I can assist you better.";
+                }
+            }
+            
+            addLandingMessage(response, 'bot');
+        }
+
+        function showLandingTyping() {
+            const chatLog = document.getElementById('landingChatLog');
+            const typing = document.createElement('div');
+            typing.id = 'landingTypingIndicator';
+            typing.style.cssText = `
+                margin: 0.75rem 0;
+                padding: 1rem 1.25rem;
+                background: white;
+                color: #666;
+                border-radius: 6px 20px 20px 20px;
+                max-width: 85%;
+                margin-left: 0;
+                margin-right: auto;
+                font-size: 0.95rem;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                border: 1px solid #e9ecef;
+                font-style: italic;
+            `;
+            
+            // Animated typing dots
+            typing.innerHTML = `
+                <span>Assistant is typing</span>
+                <span style="margin-left: 0.5rem;">
+                    <span style="animation: typingDot 1.4s infinite; animation-delay: 0s;">.</span>
+                    <span style="animation: typingDot 1.4s infinite; animation-delay: 0.2s;">.</span>
+                    <span style="animation: typingDot 1.4s infinite; animation-delay: 0.4s;">.</span>
+                </span>
+            `;
+            
+            chatLog.appendChild(typing);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function hideLandingTyping() {
+            const typing = document.getElementById('landingTypingIndicator');
+            if (typing) {
+                typing.remove();
+            }
+        }
+
+        // Initialize landing chat UI when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLandingChatUI();
+        });
+
+        // Auth modal functionality
+        function showAuthModal(mode) {
+            authMode = mode;
+            const modal = document.getElementById('authModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const registerFields = document.getElementById('registerFields');
+            const switchText = document.getElementById('switchText');
+            const switchLink = document.getElementById('switchLink');
+            
+            if (mode === 'login') {
+                modalTitle.textContent = 'Login';
+                registerFields.style.display = 'none';
+                switchText.textContent = "Don't have an account?";
+                switchLink.textContent = 'Register here';
+            } else {
+                modalTitle.textContent = 'Register';
+                registerFields.style.display = 'block';
+                switchText.textContent = 'Already have an account?';
+                switchLink.textContent = 'Login here';
+            }
+            
+            modal.style.display = 'flex';
+            stopAutoRotate(); // Pause carousel when modal is open
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').style.display = 'none';
+            resetAutoRotate(); // Resume carousel when modal closes
+        }
+
+        function switchAuthMode() {
+            const newMode = authMode === 'login' ? 'register' : 'login';
+            showAuthModal(newMode);
+        }
+
+        // Handle form submission
+        document.getElementById('authForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate authentication
+            setTimeout(() => {
+                // Redirect to the main application
+                window.location.href = 'epassport-prototype.html';
+            }, 500);
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAuthModal();
+            }
+        });
+
+        // Keyboard navigation with better UX
+        document.addEventListener('keydown', function(e) {
+            // Only handle keys when modal is not open
+            if (document.getElementById('authModal').style.display === 'none') {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    previousCard();
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextCard();
+                }
+            }
+            
+            if (e.key === 'Escape') {
+                closeAuthModal();
+            }
+        });
+
+        // Page visibility API - pause when tab is not active
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAutoRotate();
+            } else {
+                resetAutoRotate();
+            }
+        });
+    </script>
+</body>
+</html>

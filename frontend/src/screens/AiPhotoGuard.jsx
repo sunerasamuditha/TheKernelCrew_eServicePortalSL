@@ -39,9 +39,9 @@ const AiPhotoGuard = () => {
     setTimeout(() => {
       const isCompliant = Math.random() > 0.3; // Mock analysis
       if (isCompliant) {
-        setFeedback('✅ Photo is ICAO compliant! Good lighting, proper positioning, and neutral expression detected.');
+        setFeedback('Photo is ICAO compliant! Good lighting, proper positioning, and neutral expression detected.');
       } else {
-        setFeedback('❌ Photo needs adjustment: Face is slightly tilted. Please retake with head straight and facing camera directly.');
+        setFeedback('Photo needs adjustment: Face is slightly tilted. Please retake with head straight and facing camera directly.');
       }
       setIsAnalyzing(false);
     }, 2000);
@@ -87,14 +87,14 @@ const AiPhotoGuard = () => {
                   onChange={handleFileUpload} 
                 />
                 <button className="btn btn-ghost" onClick={() => fileInputRef.current.click()}>
-                  📁 Upload Photo
+                  Upload Photo
                 </button>
               </>
             ) : (
               <>
-                <button className="btn btn-secondary" onClick={retakePhoto}>🔄 Retake</button>
+                <button className="btn btn-secondary" onClick={retakePhoto}>Retake</button>
                 <button className="btn btn-primary" onClick={confirmPhoto} disabled={isAnalyzing}>
-                  ✅ Confirm Photo
+                  Confirm Photo
                 </button>
               </>
             )}

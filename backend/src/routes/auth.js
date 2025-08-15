@@ -1,52 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const { authMiddleware } = require('../middleware/auth');
+const {
+  register,
+  login,
+  getProfile,
+  updateProfile
+} = require('../controllers/authController');
 
-// Mock authentication routes
-router.post('/login', (req, res) => {
-  const { email, password } = req.body;
-  
-  // Mock authentication logic
-  if (email && password) {
-    res.json({
-      success: true,
-      message: 'Login successful',
-      user: {
-        id: 1,
-        email: email,
-        name: 'Anura Perera',
-        nic: '900123456V'
-      },
-      token: 'mock-jwt-token'
-    });
-  } else {
-    res.status(400).json({
-      success: false,
-      message: 'Email and password required'
-    });
-  }
-});
+// Public routes
+router.post('/register', register);
+router.post('/login', login);
 
-router.post('/register', (req, res) => {
-  const { name, email, password, nic } = req.body;
-  
-  // Mock registration logic
-  res.json({
-    success: true,
-    message: 'Registration successful',
-    user: {
-      id: Date.now(),
-      name,
-      email,
-      nic
-    }
-  });
-});
-
-router.post('/logout', (req, res) => {
-  res.json({
-    success: true,
-    message: 'Logout successful'
-  });
-});
+// Protected routes
+router.get('/profile', authMiddleware, getProfile);
+router.put('/profile', authMiddleware, updateProfile);
 
 module.exports = router;

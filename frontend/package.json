@@ -1,7 +1,7 @@
 {
-  "name": "epassport-sl-frontend",
+  "name": "government-services-portal-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.11.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.30.1",
+    "recharts": "^2.15.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
