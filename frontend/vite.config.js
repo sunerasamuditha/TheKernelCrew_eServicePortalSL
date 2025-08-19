@@ -6,6 +6,17 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: '0.0.0.0',
+<<<<<<< Updated upstream
     port: 3000
+=======
+    port: 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+>>>>>>> Stashed changes
   }
 })

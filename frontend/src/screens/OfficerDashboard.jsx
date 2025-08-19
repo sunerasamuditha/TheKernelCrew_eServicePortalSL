@@ -116,7 +116,11 @@ const OfficerDashboard = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h1 style={{ 
+<<<<<<< Updated upstream
               color: 'var(--peacock)', 
+=======
+              color: '#005A70', 
+>>>>>>> Stashed changes
               fontSize: '2rem', 
               fontWeight: '700',
               marginBottom: '0.5rem'
@@ -128,7 +132,11 @@ const OfficerDashboard = () => {
             </p>
           </div>
           <div style={{
+<<<<<<< Updated upstream
             background: 'var(--peacock)',
+=======
+            background: '#005A70',
+>>>>>>> Stashed changes
             color: 'white',
             padding: '0.75rem 1.5rem',
             borderRadius: '8px',
@@ -158,7 +166,11 @@ const OfficerDashboard = () => {
             boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
           }}>
             <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📅</div>
+<<<<<<< Updated upstream
             <h3 style={{ color: 'var(--peacock)', marginBottom: '0.5rem' }}>No Appointments Today</h3>
+=======
+            <h3 style={{ color: '#005A70', marginBottom: '0.5rem' }}>No Appointments Today</h3>
+>>>>>>> Stashed changes
             <p style={{ color: 'var(--muted)' }}>You have no scheduled appointments for today.</p>
           </div>
         ) : (
@@ -188,7 +200,11 @@ const OfficerDashboard = () => {
                     marginBottom: '1rem'
                   }}>
                     <div style={{
+<<<<<<< Updated upstream
                       background: 'var(--peacock)',
+=======
+                      background: '#005A70',
+>>>>>>> Stashed changes
                       color: 'white',
                       padding: '0.5rem 1rem',
                       borderRadius: '6px',
@@ -210,7 +226,11 @@ const OfficerDashboard = () => {
                   </div>
                   
                   <h3 style={{
+<<<<<<< Updated upstream
                     color: 'var(--peacock)',
+=======
+                    color: '#005A70',
+>>>>>>> Stashed changes
                     fontSize: '1.2rem',
                     fontWeight: '600',
                     marginBottom: '0.5rem'
@@ -236,6 +256,7 @@ const OfficerDashboard = () => {
                   
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                     <div>
+<<<<<<< Updated upstream
                       <strong style={{ color: 'var(--peacock)' }}>Name:</strong>{' '}
                       <span>{appointment.user.fullName}</span>
                     </div>
@@ -249,6 +270,21 @@ const OfficerDashboard = () => {
                     </div>
                     <div>
                       <strong style={{ color: 'var(--peacock)' }}>Mobile:</strong>{' '}
+=======
+                      <strong style={{ color: '#005A70' }}>Name:</strong>{' '}
+                      <span>{appointment.user.fullName}</span>
+                    </div>
+                    <div>
+                      <strong style={{ color: '#005A70' }}>NIC:</strong>{' '}
+                      <span>{appointment.user.nic}</span>
+                    </div>
+                    <div>
+                      <strong style={{ color: '#005A70' }}>Email:</strong>{' '}
+                      <span>{appointment.user.email}</span>
+                    </div>
+                    <div>
+                      <strong style={{ color: '#005A70' }}>Mobile:</strong>{' '}
+>>>>>>> Stashed changes
                       <span>{appointment.user.mobile}</span>
                     </div>
                   </div>

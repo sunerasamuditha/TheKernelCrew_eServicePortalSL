@@ -16,7 +16,12 @@ const Login = () => {
     setError('');
 
     try {
+<<<<<<< Updated upstream
       // Mock API call - replace with actual API
+=======
+      console.log('🔐 Attempting login with:', formData);
+      
+>>>>>>> Stashed changes
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -25,13 +30,24 @@ const Login = () => {
         body: JSON.stringify(formData)
       });
 
+<<<<<<< Updated upstream
       const data = await response.json();
+=======
+      console.log('📡 Response status:', response.status);
+      const data = await response.json();
+      console.log('📄 Response data:', data);
+>>>>>>> Stashed changes
 
       if (response.ok) {
         // Store token and user data
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         
+<<<<<<< Updated upstream
+=======
+        console.log('✅ Login successful, redirecting...', data.user);
+        
+>>>>>>> Stashed changes
         // Redirect based on user role
         switch (data.user.role) {
           case 'ADMIN':
@@ -48,7 +64,11 @@ const Login = () => {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
+<<<<<<< Updated upstream
       console.error('Login error:', err);
+=======
+      console.error('❌ Login error:', err);
+>>>>>>> Stashed changes
       setError('Network error. Please try again.');
     } finally {
       setLoading(false);
@@ -250,6 +270,26 @@ const Login = () => {
             ← Back to Home
           </Link>
         </div>
+<<<<<<< Updated upstream
+=======
+
+        {/* Demo Credentials */}
+        <div style={{
+          marginTop: '1.5rem',
+          padding: '1rem',
+          background: '#f8f9fa',
+          borderRadius: '6px',
+          fontSize: '0.8rem',
+          color: 'var(--muted)'
+        }}>
+          <strong style={{ color: 'var(--peacock)' }}>Demo Accounts:</strong><br/>
+          <div style={{ marginTop: '0.5rem', lineHeight: '1.4' }}>
+            <strong>Admin:</strong> admin@gov.lk / admin123<br/>
+            <strong>Officer:</strong> officer@gov.lk / officer123<br/>
+            <strong>Citizen:</strong> citizen@gov.lk / citizen123
+          </div>
+        </div>
+>>>>>>> Stashed changes
       </div>
     </div>
   );

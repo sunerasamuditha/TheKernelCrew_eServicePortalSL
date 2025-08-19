@@ -65,7 +65,11 @@ const StatusAndQueue = () => {
                         height: '40px',
                         borderRadius: '50%',
                         background: status === 'completed' ? 'var(--success)' : 
+<<<<<<< Updated upstream
                                    status === 'active' ? 'var(--peacock)' : '#f8f9fa',
+=======
+                                   status === 'active' ? '#005A70' : '#f8f9fa',
+>>>>>>> Stashed changes
                         color: status === 'pending' ? 'var(--muted)' : 'white',
                         display: 'flex',
                         alignItems: 'center',
@@ -79,7 +83,11 @@ const StatusAndQueue = () => {
                       <div style={{ flex: 1 }}>
                         <div style={{ 
                           fontWeight: 600, 
+<<<<<<< Updated upstream
                           color: status === 'active' ? 'var(--peacock)' : 'var(--text)',
+=======
+                          color: status === 'active' ? '#005A70' : 'var(--text)',
+>>>>>>> Stashed changes
                           marginBottom: '0.25rem'
                         }}>
                           {step.title}
@@ -91,7 +99,11 @@ const StatusAndQueue = () => {
                       {status === 'active' && (
                         <div style={{
                           background: 'rgba(0, 90, 112, 0.1)',
+<<<<<<< Updated upstream
                           color: 'var(--peacock)',
+=======
+                          color: '#005A70',
+>>>>>>> Stashed changes
                           padding: '0.25rem 0.75rem',
                           borderRadius: '1rem',
                           fontSize: '0.8rem',
@@ -126,7 +138,11 @@ const StatusAndQueue = () => {
                   display: 'flex',
                   gap: '1rem',
                   padding: '1rem',
+<<<<<<< Updated upstream
                   borderLeft: '3px solid var(--peacock)',
+=======
+                  borderLeft: '3px solid #005A70',
+>>>>>>> Stashed changes
                   background: 'rgba(0, 90, 112, 0.02)',
                   marginBottom: '1rem',
                   borderRadius: '0 var(--border-radius) var(--border-radius) 0'
@@ -152,7 +168,11 @@ const StatusAndQueue = () => {
               <div style={{ 
                 fontSize: '3rem', 
                 fontWeight: 'bold', 
+<<<<<<< Updated upstream
                 color: 'var(--peacock)',
+=======
+                color: '#005A70',
+>>>>>>> Stashed changes
                 marginBottom: '0.5rem'
               }}>
                 #{queuePosition}
@@ -172,7 +192,11 @@ const StatusAndQueue = () => {
                 <div style={{ 
                   fontSize: '1.5rem', 
                   fontWeight: 'bold', 
+<<<<<<< Updated upstream
                   color: 'var(--peacock)' 
+=======
+                  color: '#005A70' 
+>>>>>>> Stashed changes
                 }}>
                   {estimatedTime} minutes
                 </div>

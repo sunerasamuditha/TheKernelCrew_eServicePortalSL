@@ -14,6 +14,7 @@ const Sidebar = () => {
   };
 
   const navItems = [
+<<<<<<< Updated upstream
     { id: 'home', icon: '🏠', label: 'Dashboard' },
     { id: 'smartscan', icon: '🤖', label: 'AI SmartScan' },
     { id: 'photoguard', icon: '📸', label: 'AI PhotoGuard' },
@@ -22,6 +23,16 @@ const Sidebar = () => {
     { id: 'status', icon: '📊', label: 'Status & Queue' },
     { id: 'support', icon: '🆘', label: 'Help & Support' },
     { id: 'profile', icon: '👤', label: 'Profile' },
+=======
+    { id: 'home', icon: '■', label: 'Dashboard' },
+    { id: 'smartscan', icon: '●', label: 'AI SmartScan' },
+    { id: 'photoguard', icon: '●', label: 'AI PhotoGuard' },
+    { id: 'documents', icon: '□', label: 'Documents' },
+    { id: 'payments', icon: '▲', label: 'Payment & Booking' },
+    { id: 'status', icon: '♦', label: 'Status & Queue' },
+    { id: 'support', icon: '◆', label: 'Help & Support' },
+    { id: 'profile', icon: '○', label: 'Profile' },
+>>>>>>> Stashed changes
   ];
   
   const handleSetLanguage = (lang) => {
@@ -41,12 +52,21 @@ const Sidebar = () => {
       <div style={{ padding: '0 1.5rem', margin: '1rem 0' }} className="desktop-lang-container">
           <div style={{height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)', marginBottom: '1rem'}}></div>
           <div style={{display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem'}}>
+<<<<<<< Updated upstream
             <span style={{color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem', fontWeight: 500}}>🌐 Language</span>
           </div>
           <div className="nav-language-selector" style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px', padding: '0.3rem', display: 'flex', gap: '0.2rem', backdropFilter: 'blur(10px)' }}>
               <button onClick={() => handleSetLanguage('en')} className={`nav-lang-btn ${language === 'en' ? 'active' : ''}`} data-lang="en" style={{ flex:1, padding:'0.4rem 0.6rem', border:'none', borderRadius:'6px', background: language === 'en' ? 'rgba(255, 255, 255, 0.9)' : 'transparent', color: language === 'en' ? 'var(--peacock)' : 'rgba(255,255,255,0.8)', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.3s ease' }}>EN</button>
               <button onClick={() => handleSetLanguage('si')} className={`nav-lang-btn ${language === 'si' ? 'active' : ''}`} data-lang="si" style={{ flex:1, padding:'0.4rem 0.6rem', border:'none', borderRadius:'6px', background: language === 'si' ? 'rgba(255, 255, 255, 0.9)' : 'transparent', color: language === 'si' ? 'var(--peacock)' : 'rgba(255,255,255,0.8)', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.3s ease' }}>සි</button>
               <button onClick={() => handleSetLanguage('ta')} className={`nav-lang-btn ${language === 'ta' ? 'active' : ''}`} data-lang="ta" style={{ flex:1, padding:'0.4rem 0.6rem', border:'none', borderRadius:'6px', background: language === 'ta' ? 'rgba(255, 255, 255, 0.9)' : 'transparent', color: language === 'ta' ? 'var(--peacock)' : 'rgba(255,255,255,0.8)', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.3s ease' }}>த</button>
+=======
+            <span style={{color: 'rgba(255,255,255,0.7)', fontSize: '0.8rem', fontWeight: 500}}>Language</span>
+          </div>
+          <div className="nav-language-selector" style={{ background: 'rgba(255, 255, 255, 0.1)', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '8px', padding: '0.3rem', display: 'flex', gap: '0.2rem', backdropFilter: 'blur(10px)' }}>
+              <button onClick={() => handleSetLanguage('en')} className={`nav-lang-btn ${language === 'en' ? 'active' : ''}`} data-lang="en" style={{ flex:1, padding:'0.4rem 0.6rem', border:'none', borderRadius:'6px', background: language === 'en' ? 'rgba(255, 255, 255, 0.9)' : 'transparent', color: language === 'en' ? '#005A70' : 'rgba(255,255,255,0.8)', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.3s ease' }}>EN</button>
+              <button onClick={() => handleSetLanguage('si')} className={`nav-lang-btn ${language === 'si' ? 'active' : ''}`} data-lang="si" style={{ flex:1, padding:'0.4rem 0.6rem', border:'none', borderRadius:'6px', background: language === 'si' ? 'rgba(255, 255, 255, 0.9)' : 'transparent', color: language === 'si' ? '#005A70' : 'rgba(255,255,255,0.8)', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.3s ease' }}>සි</button>
+              <button onClick={() => handleSetLanguage('ta')} className={`nav-lang-btn ${language === 'ta' ? 'active' : ''}`} data-lang="ta" style={{ flex:1, padding:'0.4rem 0.6rem', border:'none', borderRadius:'6px', background: language === 'ta' ? 'rgba(255, 255, 255, 0.9)' : 'transparent', color: language === 'ta' ? '#005A70' : 'rgba(255,255,255,0.8)', fontSize:'0.75rem', fontWeight:600, cursor:'pointer', transition:'all 0.3s ease' }}>த</button>
+>>>>>>> Stashed changes
           </div>
       </div>
       

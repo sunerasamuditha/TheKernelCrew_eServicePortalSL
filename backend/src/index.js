@@ -21,13 +21,19 @@ app.use(limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: ['http://localhost:3000', 'http://localhost:5173', process.env.FRONTEND_URL || 'http://localhost:3000'],
   credentials: true
 }));
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Request logging middleware (for debugging)
+app.use((req, res, next) => {
+  console.log(`📝 ${req.method} ${req.path} - ${new Date().toISOString()}`);
+  next();
+});
 
 // Serve uploaded files
 app.use('/uploads', express.static('uploads'));
@@ -42,6 +48,15 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Test endpoint for debugging
+app.post('/test', (req, res) => {
+  console.log('🧪 Test endpoint hit with body:', req.body);
+  res.json({
+    message: 'Test endpoint working',
+    receivedData: req.body,
+    timestamp: new Date().toISOString()
+  });
+});
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/services', require('./routes/services'));
