@@ -3,26 +3,15 @@ import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import Footer from '../components/Footer';
 import FloatingChatbot from '../components/FloatingChatbot';
-<<<<<<< Updated upstream
-=======
 import AiPhotoGuard from './AiPhotoGuard';
-import AiSmartScan from './AiSmartScan';
-import Documents from './Documents';
-import PaymentsAndBooking from './PaymentsAndBooking';
-import StatusAndQueue from './StatusAndQueue';
-import Support from './Support';
-import Profile from './Profile';
-import { useApp } from '../contexts/AppContext';
->>>>>>> Stashed changes
 
 const Dashboard = () => {
+  const [user, setUser] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
-<<<<<<< Updated upstream
-=======
+  const [showPhotoGuard, setShowPhotoGuard] = useState(false);
+
   const { activeScreen } = useApp();
->>>>>>> Stashed changes
 
   useEffect(() => {
     // Get user from localStorage
@@ -92,19 +81,6 @@ const Dashboard = () => {
     );
   }
 
-<<<<<<< Updated upstream
-  return (
-    <>
-      <div className="container">
-        <Sidebar />
-        <main className="main">
-          <Topbar />
-          
-          <div style={{ padding: '2rem' }}>
-            {/* Welcome Section */}
-            <div style={{
-              background: 'linear-gradient(135deg, var(--peacock) 0%, #1a365d 100%)',
-=======
   const renderActiveComponent = () => {
     switch (activeScreen) {
       case 'home':
@@ -113,7 +89,6 @@ const Dashboard = () => {
             {/* Welcome Section */}
             <div style={{
               background: 'linear-gradient(135deg, #005A70 0%, #1a365d 100%)',
->>>>>>> Stashed changes
               color: 'white',
               padding: '2rem',
               borderRadius: '16px',
@@ -142,11 +117,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📅</div>
-<<<<<<< Updated upstream
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
-=======
                 <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
->>>>>>> Stashed changes
                   {appointments.length}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Active Appointments</p>
@@ -160,11 +131,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🏛️</div>
-<<<<<<< Updated upstream
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
-=======
                 <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
->>>>>>> Stashed changes
                   {new Set(appointments.map(a => a.service.department.name)).size}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Departments</p>
@@ -178,11 +145,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⏰</div>
-<<<<<<< Updated upstream
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
-=======
                 <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
->>>>>>> Stashed changes
                   {appointments.filter(a => a.status === 'CONFIRMED' || a.status === 'SCHEDULED').length}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Upcoming</p>
@@ -196,11 +159,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✅</div>
-<<<<<<< Updated upstream
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
-=======
                 <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
->>>>>>> Stashed changes
                   {appointments.filter(a => a.status === 'COMPLETED').length}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Completed</p>
@@ -215,19 +174,11 @@ const Dashboard = () => {
               boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-<<<<<<< Updated upstream
-                <h2 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
-                  My Appointments
-                </h2>
-                <button style={{
-                  background: 'var(--peacock)',
-=======
                 <h2 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
                   My Appointments
                 </h2>
                 <button style={{
                   background: '#005A70',
->>>>>>> Stashed changes
                   color: 'white',
                   border: 'none',
                   padding: '0.75rem 1.5rem',
@@ -275,11 +226,7 @@ const Dashboard = () => {
                               {appointment.appointmentNumber}
                             </span>
                           </div>
-<<<<<<< Updated upstream
-                          <h3 style={{ color: 'var(--peacock)', fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.25rem' }}>
-=======
                           <h3 style={{ color: '#005A70', fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.25rem' }}>
->>>>>>> Stashed changes
                             {appointment.service.name}
                           </h3>
                           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
@@ -290,11 +237,7 @@ const Dashboard = () => {
                           <div style={{ color: 'var(--text)', fontWeight: '600', fontSize: '1rem' }}>
                             {formatDate(appointment.appointmentDate)}
                           </div>
-<<<<<<< Updated upstream
-                          <div style={{ color: 'var(--peacock)', fontWeight: '600', fontSize: '1.1rem' }}>
-=======
                           <div style={{ color: '#005A70', fontWeight: '600', fontSize: '1.1rem' }}>
->>>>>>> Stashed changes
                             {appointment.appointmentTime}
                           </div>
                         </div>
@@ -310,13 +253,8 @@ const Dashboard = () => {
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                           <button style={{
                             background: 'transparent',
-<<<<<<< Updated upstream
-                            color: 'var(--peacock)',
-                            border: '1px solid var(--peacock)',
-=======
                             color: '#005A70',
                             border: '1px solid #005A70',
->>>>>>> Stashed changes
                             padding: '0.5rem 1rem',
                             borderRadius: '6px',
                             cursor: 'pointer',
@@ -325,11 +263,7 @@ const Dashboard = () => {
                             View Details
                           </button>
                           <button style={{
-<<<<<<< Updated upstream
-                            background: 'var(--peacock)',
-=======
                             background: '#005A70',
->>>>>>> Stashed changes
                             color: 'white',
                             border: 'none',
                             padding: '0.5rem 1rem',
@@ -347,9 +281,6 @@ const Dashboard = () => {
               )}
             </div>
           </div>
-<<<<<<< Updated upstream
-          
-=======
         );
       case 'photoguard':
         return <AiPhotoGuard />;
@@ -382,7 +313,6 @@ const Dashboard = () => {
         <main className="main">
           <Topbar />
           {renderActiveComponent()}
->>>>>>> Stashed changes
           <Footer />
         </main>
       </div>

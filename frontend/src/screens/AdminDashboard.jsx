@@ -67,11 +67,7 @@ const AdminDashboard = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div>
             <h1 style={{ 
-<<<<<<< Updated upstream
-              color: 'var(--peacock)', 
-=======
               color: '#005A70', 
->>>>>>> Stashed changes
               fontSize: '2rem', 
               fontWeight: '700',
               marginBottom: '0.5rem'
@@ -118,11 +114,7 @@ const AdminDashboard = () => {
           textAlign: 'center'
         }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>📅</div>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
-=======
           <h3 style={{ color: '#005A70', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
->>>>>>> Stashed changes
             {analyticsData.totalAppointments.toLocaleString()}
           </h3>
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Total Appointments</p>
@@ -136,11 +128,7 @@ const AdminDashboard = () => {
           textAlign: 'center'
         }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>👥</div>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
-=======
           <h3 style={{ color: '#005A70', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
->>>>>>> Stashed changes
             {analyticsData.totalUsers.toLocaleString()}
           </h3>
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Registered Users</p>
@@ -154,11 +142,7 @@ const AdminDashboard = () => {
           textAlign: 'center'
         }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>⭐</div>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
-=======
           <h3 style={{ color: '#005A70', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
->>>>>>> Stashed changes
             {analyticsData.averageRating.toFixed(1)}
           </h3>
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Average Rating</p>
@@ -172,11 +156,7 @@ const AdminDashboard = () => {
           textAlign: 'center'
         }}>
           <div style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>✅</div>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
-=======
           <h3 style={{ color: '#005A70', fontSize: '2rem', fontWeight: '700', marginBottom: '0.25rem' }}>
->>>>>>> Stashed changes
             {analyticsData.completionRate}%
           </h3>
           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Completion Rate</p>
@@ -197,11 +177,7 @@ const AdminDashboard = () => {
           borderRadius: '12px',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
         }}>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
-=======
           <h3 style={{ color: '#005A70', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
->>>>>>> Stashed changes
             Peak Booking Hours
           </h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -216,11 +192,7 @@ const AdminDashboard = () => {
                 labelFormatter={(value) => `${value}:00`}
                 formatter={(value) => [value, 'Appointments']}
               />
-<<<<<<< Updated upstream
-              <Bar dataKey="count" fill="var(--peacock)" radius={[4, 4, 0, 0]} />
-=======
               <Bar dataKey="count" fill="#005A70" radius={[4, 4, 0, 0]} />
->>>>>>> Stashed changes
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -232,11 +204,7 @@ const AdminDashboard = () => {
           borderRadius: '12px',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
         }}>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
-=======
           <h3 style={{ color: '#005A70', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
->>>>>>> Stashed changes
             Appointments by Department
           </h3>
           <ResponsiveContainer width="100%" height={300}>
@@ -273,11 +241,7 @@ const AdminDashboard = () => {
           borderRadius: '12px',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
         }}>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
-=======
           <h3 style={{ color: '#005A70', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
->>>>>>> Stashed changes
             Appointment Status Distribution
           </h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -291,11 +255,7 @@ const AdminDashboard = () => {
                 }}></div>
                 <div style={{ flex: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontWeight: '500' }}>{stat.status}</span>
-<<<<<<< Updated upstream
-                  <span style={{ fontWeight: '600', color: 'var(--peacock)' }}>{stat.count}</span>
-=======
                   <span style={{ fontWeight: '600', color: '#005A70' }}>{stat.count}</span>
->>>>>>> Stashed changes
                 </div>
               </div>
             ))}
@@ -309,11 +269,7 @@ const AdminDashboard = () => {
           borderRadius: '12px',
           boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
         }}>
-<<<<<<< Updated upstream
-          <h3 style={{ color: 'var(--peacock)', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
-=======
           <h3 style={{ color: '#005A70', marginBottom: '1.5rem', fontSize: '1.2rem', fontWeight: '600' }}>
->>>>>>> Stashed changes
             Average Feedback Rating by Department
           </h3>
           <ResponsiveContainer width="100%" height={250}>

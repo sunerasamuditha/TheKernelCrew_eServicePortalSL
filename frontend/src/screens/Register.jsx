@@ -76,11 +76,7 @@ const Register = () => {
   return (
     <div style={{
       minHeight: '100vh',
-<<<<<<< Updated upstream
-      background: 'linear-gradient(180deg, var(--peacock), #00788C)',
-=======
       background: 'linear-gradient(180deg, #005A70, #00788C)',
->>>>>>> Stashed changes
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -98,11 +94,7 @@ const Register = () => {
           <div style={{
             width: '60px',
             height: '60px',
-<<<<<<< Updated upstream
-            background: 'linear-gradient(135deg, var(--peacock), #00788C)',
-=======
             background: 'linear-gradient(135deg, #005A70, #00788C)',
->>>>>>> Stashed changes
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
@@ -113,11 +105,7 @@ const Register = () => {
             🏛️
           </div>
           <h2 style={{
-<<<<<<< Updated upstream
-            color: 'var(--peacock)',
-=======
             color: '#005A70',
->>>>>>> Stashed changes
             fontSize: '1.8rem',
             fontWeight: '700',
             marginBottom: '0.5rem'
@@ -385,11 +373,7 @@ const Register = () => {
             style={{
               width: '100%',
               padding: '0.875rem',
-<<<<<<< Updated upstream
-              background: loading ? '#ccc' : 'var(--peacock)',
-=======
               background: loading ? '#ccc' : '#005A70',
->>>>>>> Stashed changes
               color: 'white',
               border: 'none',
               borderRadius: '6px',
@@ -416,11 +400,7 @@ const Register = () => {
             <Link
               to="/login"
               style={{
-<<<<<<< Updated upstream
-                color: 'var(--peacock)',
-=======
                 color: '#005A70',
->>>>>>> Stashed changes
                 textDecoration: 'none',
                 fontWeight: '600'
               }}
