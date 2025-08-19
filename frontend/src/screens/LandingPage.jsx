@@ -65,8 +65,14 @@ const LandingPage = () => {
 
   const handleServiceSelect = (service) => {
     // Store selected service in localStorage for the booking flow
-    localStorage.setItem('selectedService', JSON.stringify(service));
-    navigate('/booking');
+    try {
+      localStorage.setItem('selectedService', JSON.stringify(service));
+      // Navigate to register instead of booking since booking route doesn't exist
+      navigate('/register');
+    } catch (error) {
+      console.error('Error storing service:', error);
+      navigate('/register');
+    }
   };
 
   const handleGetStarted = () => {
@@ -83,7 +89,7 @@ const LandingPage = () => {
 
   return (
     <div style={{ 
-      background: 'linear-gradient(180deg, var(--peacock), #00788C)', 
+      background: 'linear-gradient(180deg, #005A70, #00788C)', 
       minHeight: '100vh',
       color: 'white'
     }}>
@@ -109,7 +115,7 @@ const LandingPage = () => {
             <div style={{
               width: '40px',
               height: '40px',
-              background: 'linear-gradient(135deg, var(--peacock), #00788C)',
+              background: 'linear-gradient(135deg, #005A70, #00788C)',
               borderRadius: '10px',
               display: 'flex',
               alignItems: 'center',
@@ -248,7 +254,7 @@ const LandingPage = () => {
                 fontSize: '1.3rem',
                 fontWeight: '600',
                 marginBottom: '0.5rem',
-                color: 'var(--peacock)'
+                color: '#005A70'
               }}>
                 {dept.name}
               </h3>
@@ -270,7 +276,7 @@ const LandingPage = () => {
                     fontSize: '1rem',
                     fontWeight: '600',
                     marginBottom: '1rem',
-                    color: 'var(--peacock)'
+                    color: '#005A70'
                   }}>
                     Available Services:
                   </h4>
@@ -295,7 +301,7 @@ const LandingPage = () => {
                           handleServiceSelect(service);
                         }}
                         onMouseOver={(e) => {
-                          e.currentTarget.style.background = 'var(--peacock)';
+                          e.currentTarget.style.background = '#005A70';
                           e.currentTarget.style.color = 'white';
                         }}
                         onMouseOut={(e) => {
@@ -331,7 +337,7 @@ const LandingPage = () => {
               <div style={{
                 marginTop: '1rem',
                 fontSize: '0.9rem',
-                color: 'var(--peacock)',
+                color: '#005A70',
                 fontWeight: '600'
               }}>
                 {selectedDepartment?.id === dept.id ? 'Click a service to continue →' : 'Click to view services'}

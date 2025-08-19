@@ -346,7 +346,7 @@ const PaymentsAndBooking = () => {
         <h1 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '1rem' }}>
           Smart Appointment Booking
         </h1>
-        <p style={{ fontSize: '1.1rem' }}>
+        <p style={{ color: '#6c757d', fontSize: '1.1rem' }}>
           AI-powered scheduling for faster, smarter government service appointments
         </p>
       </div>

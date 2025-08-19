@@ -1,46 +1,68 @@
 services:
   db:
     image: postgres:15
-    container_name: govportal_db
+    container_name: epassport_db
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-epassport_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_password_123}
+      POSTGRES_DB: ${POSTGRES_DB:-epassport_sl}
     ports:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
       - ./db/dump:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-epassport_user}"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   redis:
     image: redis:7
-    container_name: govportal_redis
+    container_name: epassport_redis
     restart: always
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   backend:
-    build: ./backend
-    container_name: govportal_backend
+    build: 
+      context: ./backend
+      dockerfile: dockerfile/Dockerfile
+    container_name: epassport_backend
     restart: always
     env_file: .env
     ports:
       - "5000:5000"
     depends_on:
-      - db
-      - redis
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend/uploads:/app/uploads
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   frontend:
     build: 
       context: ./frontend
       dockerfile: dockerfile/Dockerfile
-    container_name: govportal_frontend
+    container_name: epassport_frontend
     restart: always
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
 
 volumes:
   db_data:

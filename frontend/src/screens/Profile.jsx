@@ -44,7 +44,7 @@ const Profile = () => {
   return (
     <section id="profile" className="content-section active">
       <div className="section-header" style={{ padding: '1.5rem', marginBottom: '1.5rem' }}>
-        <h2 style={{ color: 'var(--peacock)' }}>Profile & Settings</h2>
+        <h2 style={{ color: '#005A70' }}>Profile & Settings</h2>
         <div className="muted">Manage your account, preferences and download forms</div>
       </div>
 

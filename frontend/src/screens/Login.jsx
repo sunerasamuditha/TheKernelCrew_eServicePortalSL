@@ -16,7 +16,8 @@ const Login = () => {
     setError('');
 
     try {
-      // Mock API call - replace with actual API
+      console.log('🔐 Attempting login with:', formData);
+      
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
@@ -25,12 +26,16 @@ const Login = () => {
         body: JSON.stringify(formData)
       });
 
+      console.log('📡 Response status:', response.status);
       const data = await response.json();
+      console.log('📄 Response data:', data);
 
       if (response.ok) {
         // Store token and user data
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
+        
+        console.log('✅ Login successful, redirecting...', data.user);
         
         // Redirect based on user role
         switch (data.user.role) {
@@ -48,7 +53,7 @@ const Login = () => {
         setError(data.error || 'Login failed');
       }
     } catch (err) {
-      console.error('Login error:', err);
+      console.error('❌ Login error:', err);
       setError('Network error. Please try again.');
     } finally {
       setLoading(false);
@@ -249,6 +254,23 @@ const Login = () => {
           >
             ← Back to Home
           </Link>
+        </div>
+
+        {/* Demo Credentials */}
+        <div style={{
+          marginTop: '1.5rem',
+          padding: '1rem',
+          background: '#f8f9fa',
+          borderRadius: '6px',
+          fontSize: '0.8rem',
+          color: 'var(--muted)'
+        }}>
+          <strong style={{ color: 'var(--peacock)' }}>Demo Accounts:</strong><br/>
+          <div style={{ marginTop: '0.5rem', lineHeight: '1.4' }}>
+            <strong>Admin:</strong> admin@gov.lk / admin123<br/>
+            <strong>Officer:</strong> officer@gov.lk / officer123<br/>
+            <strong>Citizen:</strong> citizen@gov.lk / citizen123
+          </div>
         </div>
       </div>
     </div>

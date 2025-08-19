@@ -76,7 +76,7 @@ const Register = () => {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(180deg, var(--peacock), #00788C)',
+      background: 'linear-gradient(180deg, #005A70, #00788C)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -94,7 +94,7 @@ const Register = () => {
           <div style={{
             width: '60px',
             height: '60px',
-            background: 'linear-gradient(135deg, var(--peacock), #00788C)',
+            background: 'linear-gradient(135deg, #005A70, #00788C)',
             borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
@@ -105,7 +105,7 @@ const Register = () => {
             🏛️
           </div>
           <h2 style={{
-            color: 'var(--peacock)',
+            color: '#005A70',
             fontSize: '1.8rem',
             fontWeight: '700',
             marginBottom: '0.5rem'
@@ -373,7 +373,7 @@ const Register = () => {
             style={{
               width: '100%',
               padding: '0.875rem',
-              background: loading ? '#ccc' : 'var(--peacock)',
+              background: loading ? '#ccc' : '#005A70',
               color: 'white',
               border: 'none',
               borderRadius: '6px',
@@ -400,7 +400,7 @@ const Register = () => {
             <Link
               to="/login"
               style={{
-                color: 'var(--peacock)',
+                color: '#005A70',
                 textDecoration: 'none',
                 fontWeight: '600'
               }}

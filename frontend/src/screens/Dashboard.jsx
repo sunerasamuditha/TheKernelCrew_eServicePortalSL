@@ -3,11 +3,15 @@ import Sidebar from '../components/Sidebar';
 import Topbar from '../components/Topbar';
 import Footer from '../components/Footer';
 import FloatingChatbot from '../components/FloatingChatbot';
+import AiPhotoGuard from './AiPhotoGuard';
 
 const Dashboard = () => {
+  const [user, setUser] = useState(null);
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [showPhotoGuard, setShowPhotoGuard] = useState(false);
+
+  const { activeScreen } = useApp();
 
   useEffect(() => {
     // Get user from localStorage
@@ -77,17 +81,14 @@ const Dashboard = () => {
     );
   }
 
-  return (
-    <>
-      <div className="container">
-        <Sidebar />
-        <main className="main">
-          <Topbar />
-          
+  const renderActiveComponent = () => {
+    switch (activeScreen) {
+      case 'home':
+        return (
           <div style={{ padding: '2rem' }}>
             {/* Welcome Section */}
             <div style={{
-              background: 'linear-gradient(135deg, var(--peacock) 0%, #1a365d 100%)',
+              background: 'linear-gradient(135deg, #005A70 0%, #1a365d 100%)',
               color: 'white',
               padding: '2rem',
               borderRadius: '16px',
@@ -116,7 +117,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📅</div>
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
+                <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
                   {appointments.length}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Active Appointments</p>
@@ -130,7 +131,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>🏛️</div>
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
+                <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
                   {new Set(appointments.map(a => a.service.department.name)).size}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Departments</p>
@@ -144,7 +145,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>⏰</div>
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
+                <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
                   {appointments.filter(a => a.status === 'CONFIRMED' || a.status === 'SCHEDULED').length}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Upcoming</p>
@@ -158,7 +159,7 @@ const Dashboard = () => {
                 textAlign: 'center'
               }}>
                 <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>✅</div>
-                <h3 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
+                <h3 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
                   {appointments.filter(a => a.status === 'COMPLETED').length}
                 </h3>
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Completed</p>
@@ -173,11 +174,11 @@ const Dashboard = () => {
               boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
             }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-                <h2 style={{ color: 'var(--peacock)', fontSize: '1.5rem', fontWeight: '700' }}>
+                <h2 style={{ color: '#005A70', fontSize: '1.5rem', fontWeight: '700' }}>
                   My Appointments
                 </h2>
                 <button style={{
-                  background: 'var(--peacock)',
+                  background: '#005A70',
                   color: 'white',
                   border: 'none',
                   padding: '0.75rem 1.5rem',
@@ -225,7 +226,7 @@ const Dashboard = () => {
                               {appointment.appointmentNumber}
                             </span>
                           </div>
-                          <h3 style={{ color: 'var(--peacock)', fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.25rem' }}>
+                          <h3 style={{ color: '#005A70', fontSize: '1.2rem', fontWeight: '600', marginBottom: '0.25rem' }}>
                             {appointment.service.name}
                           </h3>
                           <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
@@ -236,7 +237,7 @@ const Dashboard = () => {
                           <div style={{ color: 'var(--text)', fontWeight: '600', fontSize: '1rem' }}>
                             {formatDate(appointment.appointmentDate)}
                           </div>
-                          <div style={{ color: 'var(--peacock)', fontWeight: '600', fontSize: '1.1rem' }}>
+                          <div style={{ color: '#005A70', fontWeight: '600', fontSize: '1.1rem' }}>
                             {appointment.appointmentTime}
                           </div>
                         </div>
@@ -252,8 +253,8 @@ const Dashboard = () => {
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
                           <button style={{
                             background: 'transparent',
-                            color: 'var(--peacock)',
-                            border: '1px solid var(--peacock)',
+                            color: '#005A70',
+                            border: '1px solid #005A70',
                             padding: '0.5rem 1rem',
                             borderRadius: '6px',
                             cursor: 'pointer',
@@ -262,7 +263,7 @@ const Dashboard = () => {
                             View Details
                           </button>
                           <button style={{
-                            background: 'var(--peacock)',
+                            background: '#005A70',
                             color: 'white',
                             border: 'none',
                             padding: '0.5rem 1rem',
@@ -280,7 +281,38 @@ const Dashboard = () => {
               )}
             </div>
           </div>
-          
+        );
+      case 'photoguard':
+        return <AiPhotoGuard />;
+      case 'smartscan':
+        return <AiSmartScan />;
+      case 'documents':
+        return <Documents />;
+      case 'payments':
+        return <PaymentsAndBooking />;
+      case 'status':
+        return <StatusAndQueue />;
+      case 'support':
+        return <Support />;
+      case 'profile':
+        return <Profile />;
+      default:
+        return (
+          <div style={{ padding: '2rem', textAlign: 'center' }}>
+            <h2>Welcome to e-Passport Dashboard</h2>
+            <p>Select an option from the sidebar to get started.</p>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <>
+      <div className="container">
+        <Sidebar />
+        <main className="main">
+          <Topbar />
+          {renderActiveComponent()}
           <Footer />
         </main>
       </div>
